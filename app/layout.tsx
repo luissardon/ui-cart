@@ -8,7 +8,8 @@ import { buttonVariants } from "@/components/ui/button";
 import { CommandMenu } from "@/components/command-menu";
 import { Icons } from "@/components/icons";
 import { SEO_METADATA } from "@/constants/seo";
-import { GoogleAnalytics } from "@/components/google-analytics";
+import { ThemeProvider } from "@/components/providers";
+import { ModeSwitcher } from "@/components/mode-switcher";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -36,51 +37,50 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <GoogleAnalytics GA_TRACKING_ID={process.env.GA_TRACKING_ID} />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
-        <div className="relative flex min-h-screen flex-col">
-          <header className="fixed top-0 z-50 h-14 w-full border-border/40 bg-background/20 backdrop-blur-xl">
-            <div className="px-7 flex h-14 max-w-screen-2xl items-center mx-auto">
-              <Navbar />
-              <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-                <div className="w-full flex-1 md:w-auto md:flex-none">
-                  <CommandMenu />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+          enableColorScheme
+        >
+          <div className="relative flex min-h-screen flex-col">
+            <header className="sticky top-0 z-50 h-14 w-full bg-background/20 backdrop-blur-xl border-grid border-b">
+              <div className="px-7 flex h-14 max-w-screen-2xl items-center mx-auto">
+                <Navbar />
+                <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
+                  <div className="w-full flex-1 md:w-auto md:flex-none">
+                    <CommandMenu />
+                  </div>
+                  <nav className="flex items-center">
+                    <Link
+                      href={"https://github.com/bwestwood11/ui-cart"}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <div
+                        className={cn(
+                          buttonVariants({
+                            variant: "ghost",
+                          }),
+                          "h-8 w-8 px-0"
+                        )}
+                      >
+                        <Icons.gitHub className="h-4 w-4" />
+                        <span className="sr-only">GitHub</span>
+                      </div>
+                    </Link>
+                    <ModeSwitcher />
+                  </nav>
                 </div>
-                <nav className="flex items-center">
-                  <Link href={"https://github.com/bwestwood11/ui-cart"} target="_blank" rel="noreferrer">
-                    <div
-                      className={cn(
-                        buttonVariants({
-                          variant: "ghost",
-                        }),
-                        "h-8 w-8 px-0"
-                      )}
-                    >
-                      <Icons.gitHub className="h-4 w-4" />
-                      <span className="sr-only">GitHub</span>
-                    </div>
-                  </Link>
-                  <Link href={"https://x.com/brett__westwood"} target="_blank" rel="noreferrer">
-                    <div
-                      className={cn(
-                        buttonVariants({
-                          variant: "ghost",
-                        }),
-                        "h-8 w-8 px-0"
-                      )}
-                    >
-                      <Icons.twitter className="h-3 w-3 fill-current" />
-                      <span className="sr-only">Twitter</span>
-                    </div>
-                  </Link>
-                </nav>
               </div>
-            </div>
-          </header>
-          <div>{children}</div>
-        </div>
+            </header>
+            <div>{children}</div>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

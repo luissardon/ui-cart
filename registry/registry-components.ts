@@ -2,6 +2,12 @@ import { Registry } from "./schema";
 
 export const ui: Registry = [
   {
+    name: "hero-banner",
+    type: "registry:ui",
+    registryDependencies: ["button"],
+    files: ["ui/hero-banner.tsx"],
+  },
+  {
     name: "sidebar-01",
     type: "registry:block",
     registryDependencies: [

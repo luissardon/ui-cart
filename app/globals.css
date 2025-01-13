@@ -86,7 +86,7 @@ body {
 }
 
 [data-rehype-pretty-code-figure] code {
-  @apply text-sm !leading-loose md:text-base;
+  @apply text-sm !leading-loose md:text-sm;
 }
 
 [data-rehype-pretty-code-figure] code[data-line-numbers] {

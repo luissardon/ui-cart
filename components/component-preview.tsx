@@ -10,7 +10,6 @@ import { Loader2 } from "lucide-react";
 
 interface ComponentPreviewProps extends React.HTMLAttributes<HTMLDivElement> {
   name: keyof typeof components;
-  // description?: string;
   hideCode?: boolean;
   align?: "start" | "center" | "end";
   shouldExpand?: boolean;
@@ -21,7 +20,6 @@ export function ComponentPreview({
   className,
   align = "center",
   shouldExpand = false,
-  // description,
   hideCode = false,
   ...props
 }: ComponentPreviewProps) {
@@ -29,7 +27,6 @@ export function ComponentPreview({
 
   const files = components[name].files;
 
-  console.log("files", files);
   const Preview = React.useMemo(() => {
     const Component = components[name].component;
 
@@ -48,19 +45,17 @@ export function ComponentPreview({
     return <Component />;
   }, [name]);
 
-  // const Code = React.useMemo(() => {
-  //   return (
-  //     <pre className="text-sm text-muted-foreground">
-  //       {files.map((file) => {
-  //         return (
-  //           <code className="block" key={file.path}>
-  //             {file.content}
-  //           </code>
-  //         )
-  //       })}
-  //     </pre>
-  //   )
-  // }, [files])
+  const Code = () => (
+    <pre className="text-sm text-muted-foreground w-full">
+      {files.map((file) => {
+        return (
+          <code className="block" key={file.path}>
+            {file.content}
+          </code>
+        );
+      })}
+    </pre>
+  );
 
   return (
     <div
@@ -77,39 +72,18 @@ export function ComponentPreview({
               >
                 Preview
               </TabsTrigger>
-              {files.map((file) => {
-                return (
-                  <TabsTrigger
-                    key={file.path}
-                    value={file.path}
-                    className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
-                  >
-                    {file.path.split("/").pop()}
-                  </TabsTrigger>
-                );
-              })}
-
-              {/* <TabsTrigger
-                value="preview"
-                className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
-              >
-                Preview
-              </TabsTrigger>
               <TabsTrigger
                 value="code"
                 className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
               >
                 Code
-              </TabsTrigger> */}
+              </TabsTrigger>
             </TabsList>
           )}
         </div>
         <TabsContent
           value="preview"
-          className={cn(
-            !isExpanded && "h-[400px] overflow-hidden",
-            "relative rounded-md border"
-          )}
+          className={cn(isExpanded && "h-full", "relative rounded-md border")}
         >
           {shouldExpand && (
             <>
@@ -128,7 +102,7 @@ export function ComponentPreview({
 
           <div
             className={cn(
-              "preview flex min-h-[350px] w-full justify-center p-10",
+              "preview flex min-h-[480px] w-full justify-center p-5",
               {
                 "items-center": align === "center",
                 "items-start": align === "start",
@@ -148,24 +122,17 @@ export function ComponentPreview({
             </React.Suspense>
           </div>
         </TabsContent>
-        {files.map((file) => {
-          return (
-            <TabsContent key={file.path} value={file.path}>
-              <div className="flex flex-col space-y-4">
-                <div className="w-full rounded-md [&_pre]:my-0 [&_pre]:max-h-[350px] [&_pre]:overflow-auto">
-                  <pre
-                    className="text-sm text-muted-foreground"
-                    key={file.path}
-                  >
-                    <code className="block break-words text-wrap">
-                      {file.content}
-                    </code>
-                  </pre>
-                </div>
-              </div>
-            </TabsContent>
-          );
-        })}
+        <TabsContent
+          value="code"
+          className={cn(
+            !isExpanded && "h-[480px] overflow-auto",
+            "relative rounded-md border"
+          )}
+        >
+          <div className={cn("preview flex min-h-[350px] w-full p-5")}>
+            <Code />
+          </div>
+        </TabsContent>
       </Tabs>
     </div>
   );

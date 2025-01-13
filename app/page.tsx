@@ -23,10 +23,10 @@ export default function Home() {
           ease={80}
           refresh
         />
-  <Spotlight
-        className="-top-40 left-0 md:left-60 md:-top-20 max-xl:hidden"
-        fill="white"
-      />
+        <Spotlight
+          className="-top-40 left-0 md:left-60 md:-top-20 max-xl:hidden"
+          fill="white"
+        />
         <div className="absolute max-sm:hidden right-0 top-[5%] lg:w-[300px] sm:w-[200px] xl:w-[500px]">
           <svg
             id="Layer_1"
@@ -221,18 +221,18 @@ export default function Home() {
       </div>
       <div className="w-full flex flex-col gap-5 h-full justify-center items-center px-4 md:px-0">
         <div className="bg-accent/50 rounded-full text-sm px-4 py-2 w-fit flex items-center gap-2">
-         <Component className="size-4"/> Custom Components & Blocks
+          <Component className="size-4" /> Custom Components & Blocks
           <ChevronRight className="size-4" />
         </div>
 
         <div className="text-center">
           {" "}
-            <h1 className="text-5xl font-semibold tracking-tight">
-              Library Built on top of{" "}
-              <span className="text-transparent bg-gradient-to-t from-teal-400 via-emerald-500 to-green-600 bg-clip-text font-bold">
-                Shadcn
-              </span>
-            </h1>{" "}
+          <h1 className="text-5xl font-semibold tracking-tight">
+            Library Built on top of{" "}
+            <span className="text-transparent bg-gradient-to-t from-teal-400 via-emerald-500 to-green-600 bg-clip-text font-bold">
+              Shadcn
+            </span>
+          </h1>{" "}
           <p className="text-muted-foreground text-sm mt-2">
             Dive into custom-made reusable components & blocks.
           </p>
@@ -240,7 +240,7 @@ export default function Home() {
 
         <div className="flex flex-col sm:flex-row gap-3 mt-4">
           <Link
-            href="/docs/sidebar-01"
+            href="/docs/hero-banner"
             className="bg-accent flex gap-1 items-center px-4 py-2 rounded-full text-sm hover:bg-accent/70"
           >
             Browse Components <ArrowTopRightIcon />
