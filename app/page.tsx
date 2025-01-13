@@ -25,7 +25,7 @@ export default function Home() {
           {" "}
           <h1 className="text-5xl font-semibold tracking-tight">
             Library Built on top of{" "}
-            <span className="text-transparent bg-gradient-to-t from-teal-400 via-emerald-500 to-green-600 bg-clip-text font-bold">
+            <span className="text-transparent bg-gradient-to-t from-purple-400 via-fuchsia-500 to-purple-600 bg-clip-text font-bold">
               Shadcn
             </span>
           </h1>{" "}

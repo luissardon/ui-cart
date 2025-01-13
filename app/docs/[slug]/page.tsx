@@ -26,9 +26,7 @@ export default function Home({ params }: { params: { slug: string } }) {
             {doc.title}
           </h1>
           {doc.description && (
-            <p className="text-base text-muted-foreground">
-              <p>{doc.description}</p>
-            </p>
+            <p className="text-base text-muted-foreground">{doc.description}</p>
           )}
         </div>
 

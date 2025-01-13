@@ -11,8 +11,9 @@ const HeroBannerPreview = (props: any) => {
         description: "This is a hero banner description",
       }}
       mediaProps={{
-        src: "https://images.contentstack.io/v3/assets/bltd2fcd5ec0e630d61/blt9759a290b94c2ad3/66a944dd610c418351420b45/CommerceUISpace.png",
+        src: "https://i.pinimg.com/1200x/14/d4/c9/14d4c9758f5a23d0680013561920bbb1.jpg",
       }}
+      linkProps={{ children: "Get Started", href: "/get-started" }}
       fullWidth
       headingType="hero"
       textAlign="center"

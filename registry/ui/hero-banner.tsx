@@ -100,7 +100,7 @@ export function HeroBanner({
           {linkProps && (
             <Button
               asChild
-              variant="secondary"
+              variant="default"
               className={cn("px-8 py-6 text-base")}
             >
               <LinkComponent {...linkProps} />
