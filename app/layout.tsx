@@ -36,9 +36,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark min-h-[100vh]">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground min-h-[100vh] flex flex-col`}
       >
         <ThemeProvider
           attribute="class"
@@ -47,39 +47,37 @@ export default function RootLayout({
           disableTransitionOnChange
           enableColorScheme
         >
-          <div className="relative flex min-h-screen flex-col">
-            <header className="sticky top-0 z-50 h-14 w-full bg-background/20 backdrop-blur-xl border-grid border-b">
-              <div className="px-7 flex h-14 max-w-screen-2xl items-center mx-auto">
-                <Navbar />
-                <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-                  <div className="w-full flex-1 md:w-auto md:flex-none">
-                    <CommandMenu />
-                  </div>
-                  <nav className="flex items-center">
-                    <Link
-                      href={"https://github.com/bwestwood11/ui-cart"}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <div
-                        className={cn(
-                          buttonVariants({
-                            variant: "ghost",
-                          }),
-                          "h-8 w-8 px-0"
-                        )}
-                      >
-                        <Icons.gitHub className="h-4 w-4" />
-                        <span className="sr-only">GitHub</span>
-                      </div>
-                    </Link>
-                    <ModeSwitcher />
-                  </nav>
+          <header className="sticky top-0 z-50 h-14 w-full bg-background/20 backdrop-blur-xl border-grid border-b">
+            <div className="px-7 flex h-14 max-w-screen-2xl items-center mx-auto">
+              <Navbar />
+              <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
+                <div className="w-full flex-1 md:w-auto md:flex-none">
+                  <CommandMenu />
                 </div>
+                <nav className="flex items-center">
+                  <Link
+                    href={"https://github.com/bwestwood11/ui-cart"}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <div
+                      className={cn(
+                        buttonVariants({
+                          variant: "ghost",
+                        }),
+                        "h-8 w-8 px-0"
+                      )}
+                    >
+                      <Icons.gitHub className="h-4 w-4" />
+                      <span className="sr-only">GitHub</span>
+                    </div>
+                  </Link>
+                  <ModeSwitcher />
+                </nav>
               </div>
-            </header>
-            <div>{children}</div>
-          </div>
+            </div>
+          </header>
+          {children}
         </ThemeProvider>
       </body>
     </html>
